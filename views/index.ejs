@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Web Clone</title>
+    <link href="/css/output.css" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white shadow-lg rounded-lg">
+            <div class="flex justify-between items-center border-b border-gray-200 p-4">
+                <div class="flex items-center">
+                    <img src="/img/noprofile.jpg" alt="WhatsApp Logo" class="w-10 h-10 mr-2">
+                    <h1 class="text-xl font-semibold">LiveChat</h1>
+                </div>
+                <div>
+                    <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-full">Yeni Sohbet</button>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="w-1/4 bg-gray-200 border-r border-gray-300">
+                    <div class="p-5">
+                    <input type="text" placeholder="Arama" class="border  border-gray-300 px-3 py-2 rounded-lg w-full ">
+                </div>
+                    <div class="flex items-center space-x-2  border-b border-gray-300 p-5">
+                        <img src="/img/noprofile.jpg" alt="Profile Picture" class="w-10 h-10 rounded-full">
+                        <div>
+                            <h2 class="font-semibold">Ruh Adam</h2>
+                            <p class="text-gray-500">Son görülen: 5 dakika önce</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2  border-b border-gray-300 p-5">
+                        <img src="/img/noprofile.jpg" alt="Profile Picture" class="w-10 h-10 rounded-full">
+                        <div>
+                            <h2 class="font-semibold">Ruh Adam</h2>
+                            <p class="text-gray-500">Son görülen: 5 dakika önce</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2  border-b border-gray-300 p-5">
+                        <img src="/img/noprofile.jpg" alt="Profile Picture" class="w-10 h-10 rounded-full">
+                        <div>
+                            <h2 class="font-semibold">Ruh Adam</h2>
+                            <p class="text-gray-500">Son görülen: 5 dakika önce</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2  border-b border-gray-300 p-5">
+                        <img src="/img/noprofile.jpg" alt="Profile Picture" class="w-10 h-10 rounded-full">
+                        <div>
+                            <h2 class="font-semibold">Ruh Adam</h2>
+                            <p class="text-gray-500">Son görülen: 5 dakika önce</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2  border-b border-gray-300 p-5">
+                        <img src="/img/noprofile.jpg" alt="Profile Picture" class="w-10 h-10 rounded-full">
+                        <div>
+                            <h2 class="font-semibold">Ruh Adam</h2>
+                            <p class="text-gray-500">Son görülen: 5 dakika önce</p>
+                        </div>
+                    </div>
+                    <!-- Diğer kişiler buraya eklenebilir -->
+                </div>
+                <div class="w-3/4">
+                    <div class="bg-gray-300 p-2 flex">
+                        <img src="/img/noprofile.jpg" alt="WhatsApp Logo" class="size-16 rounded-full mr-5">
+                    <div class=" mb-4">
+                        <h2 class="text-lg font-semibold">Ruh Adam</h2>
+                        <p class="text-gray-500">Son görülen: 5 dakika önce</p>
+                    </div>
+                </div>
+                <div class="overflow-y-auto h-96 p-5">
+                    <!-- Mesajlar buraya dinamik olarak eklenebilir -->
+                    <div class="flex items-start mb-4">
+                        <div class="bg-blue-500 p-3 rounded-r-lg rounded-bl-lg">
+                            <p class="text-sm text-white">Merhaba, nasılsın?</p>
+                        </div>
+                    </div>
+                    <div class="flex items-end justify-end mb-4">
+                        <div class="bg-gray-300 p-3 rounded-l-lg rounded-br-lg">
+                            <p class="text-sm">Merhaba, iyiyim. Sen nasılsın?</p>
+                        </div>
+                    </div>
+                    <!-- Diğer mesajlar buraya eklenir -->
+                </div>
+                <form id="form">
+                    <div class="flex items-center mt-4 p-5">
+                        <input id="input" type="text" placeholder="Mesajınızı yazın..." class="border border-gray-300 px-3 py-2 rounded-full w-full mr-2">
+                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full">Gönder</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- Socket.IO istemci tarafı kütüphanesini ekleyin -->
+     <script src="/socket.io/socket.io.js"></script>
+     <script>
+        const socket = io();
+      
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+      
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          if (input.value) {
+            socket.emit('chat message', input.value);
+            input.value = '';
+          }
+        });
+      </script>
+</body>
+</html>
